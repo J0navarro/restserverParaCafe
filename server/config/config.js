@@ -9,9 +9,8 @@ process.env.PORT = process.env.PORT || 3000;
 process.env.NODE_ENV = process.env.NODE_ENV || 'dev';
 
 //===================
-// Base de Datos
+// Coneccion a Base de Datos
 //===================
-
 let urlDB;
 
 if (process.env.NODE_ENV === 'dev') {
@@ -21,3 +20,15 @@ if (process.env.NODE_ENV === 'dev') {
 }
 
 process.env.URLDB = urlDB;
+
+//===================
+// Expiracion Token
+//===================
+
+process.env.CADUCIDAD_TOKEN = 60 * 60 * 24 * 30;
+
+//===================
+// SEDD
+//===================
+
+process.env.SEED = process.env.SEED || 'este-es-el-seed-desarrollo';

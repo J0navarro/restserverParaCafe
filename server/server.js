@@ -5,19 +5,18 @@ const app = express();
 
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
-const { routes } = require('./routes/usuarios');
 
 
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(require('./routes/usuarios'));
 
 // parse application/json
-app.use(bodyParser.json())
+app.use(bodyParser.json());
 
+//configuracion Global de rutas
+app.use(require('./routes/index'));
 
-
-mongoose.connect(process.env.URLDB, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true });
+mongoose.connect(process.env.URLDB, { useNewUrlParser: true, useFindAndModify: false, useUnifiedTopology: true, useCreateIndex: true });
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function() {
