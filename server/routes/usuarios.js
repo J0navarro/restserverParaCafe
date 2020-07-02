@@ -32,6 +32,7 @@ app.get('/usuario', verificaToken, (req, res) => {
                 res.json({
                     ok: true,
                     usuarios,
+                    urlDB: process.env.URLDB,
                     cuantos: conteo
                 });
 
