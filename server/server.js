@@ -1,12 +1,10 @@
 require('./config/config');
 const express = require('express');
-const app = express();
-
-
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+const path = require('path');
 
-
+const app = express();
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }));
 
@@ -15,6 +13,8 @@ app.use(bodyParser.json());
 
 //configuracion Global de rutas
 app.use(require('./routes/index'));
+
+app.use(express.static(path.resolve(__dirname, '../public')));
 
 mongoose.connect(process.env.URLDB, { useNewUrlParser: true, useFindAndModify: false, useUnifiedTopology: true, useCreateIndex: true });
 const db = mongoose.connection;
